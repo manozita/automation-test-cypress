@@ -20,7 +20,7 @@ describe('página de registro', () => {
     cy.get('.woocommerce-MyAccount-navigation-link--edit-account').should('be.visible');
     cy.get('.woocommerce-MyAccount-navigation-link--customer-logout').should('be.visible');
   })
-
+ 
   it('deve preencher os campos com email inválido para exibir mensagem de aviso', () => {
     // preencher campos para registro
     cy.get('#reg_email').type('email@invalido');
