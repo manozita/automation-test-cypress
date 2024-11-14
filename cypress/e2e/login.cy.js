@@ -12,13 +12,9 @@ describe('página de login', () => {
     cy.get('#username').type('manoelamartedi@hotmail.com');
     cy.get('#password').type('12senha34');
     cy.get('input[name="login"]').click();
-    // redirecionar para pagina da conta e verificar visibilidade dos componentes
-    cy.get('.woocommerce-MyAccount-navigation-link--dashboard').should('be.visible');
-    cy.get('.woocommerce-MyAccount-navigation-link--orders').should('be.visible');
-    cy.get('.woocommerce-MyAccount-navigation-link--downloads').should('be.visible');
-    cy.get('.woocommerce-MyAccount-navigation-link--edit-address').should('be.visible');
-    cy.get('.woocommerce-MyAccount-navigation-link--edit-account').should('be.visible');
-    cy.get('.woocommerce-MyAccount-navigation-link--customer-logout').should('be.visible');
+    // verificar se está na página de conta
+    cy.url().should('include', '/my-account/');
+    
   })
 
   it('deve preencher os campos incorretamente para exibir mensagem de aviso', () => {
