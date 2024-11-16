@@ -2,120 +2,142 @@
 describe('página de compras', () => {
 
   beforeEach(() => {
-    cy.visit('https://practice.automationtesting.in/')
-    cy.get('#menu-icon').click();
-    cy.get('#menu-item-40').click();
+    cy.acessarItemMenu('40');
   })
 
-  it('deve arrastar slider para aplicar filtro de preço máximo 450', () => {
-
-    // ação de arrastar slider para 450
-    cy.get('.price_slider.ui-slider-horizontal').then($slider => {
-      const novaPosicao = (85.7143 / 100) * $slider.width(); // calcular a nova posição correspondente a 85.7143%
-    
-      cy.get('.ui-slider-handle:last-child') // handle direito
-        .trigger('mousedown', { which: 1 }) // ação de clique
-        .invoke('attr', 'style', `left: 85.7143%`) // ajuste do estilo
-        .trigger('mousemove', { clientX: novaPosicao }) // ação de mover
-        .trigger('mouseup'); // ação de soltar
-    });
-
-    // verificação de preço máximo
-    cy.get('input[name="max_price"]').should('have.value', '450');
-    // botão de aplicar
-    cy.get('button[type="submit"]').click();
-    // verificação de produtos
-    cy.get('.post-160').should('not.exist');
+  it('arrastar slider para filtrar preço', () => {
+    cy.arrastarSlider('85.7413'); // ação de arrastar slider para 450
+    cy.deveTerValor('input[name="max_price"]', '450'); // verificação de preço máximo
+    cy.clicar('button[type="submit"]');
+    // verificação de produto com preço maior do que 450
+    cy.naoDeveExistir('.post-160');
   })
 
-  it('deve clicar no filtro JavaScript para filtrar categoria', () => {
-
+  it('filtrar por categoria javascript', () => {
     // clicar no filtro JavaScript
-    cy.get('.cat-item-21 > a').click();
-
-    // verificação de url
-    cy.url().should('include', '/product-category/javascript/');
-
+    cy.clicar('.cat-item-21 > a');
+    cy.verificarURL('/product-category/javascript/');
   })
 
-  it('deve clicar em Sort by popularity para organizar por ordem de popularidade', () => {
-
-    // clicar no select e escolher Sort by popularity
-    cy.get('select.orderby').select('popularity');
-
+  it('ordenar por popularidade', () => {
+    cy.ordenarProdutosPor('popularity');
     // verificar dois primeiros itens
-    cy.get('.products li').eq(0).should('have.class', 'post-169');
-    cy.get('.products li').eq(1).should('have.class', 'post-160');
+    cy.verificarProdutos(0, 'post-169');
+    cy.verificarProdutos(1, 'post-160');
   })
 
-  it('deve clicar em Sort by average rating para organizar por média de notas', () => {
-
-    // clicar no select e escolher Sort by popularity
-    cy.get('select.orderby').select('rating');
-
+  it('ordenar por avaliações', () => {
+    cy.ordenarProdutosPor('rating');
     // verificar dois primeiros itens
-    cy.get('.products li').eq(0).should('have.class', 'post-160');
-    cy.get('.products li').eq(1).should('have.class', 'post-165');
+    cy.verificarProdutos(0, 'post-160');
+    cy.verificarProdutos(1, 'post-165');
   })
 
-  it('deve clicar em Sort by newness rating para organizar por data', () => {
-
-    // clicar no select e escolher Sort by popularity
-    cy.get('select.orderby').select('date');
-
+  it('ordenar por data', () => {
+    cy.ordenarProdutosPor('date');
     // verificar dois primeiros itens
-    cy.get('.products li').eq(0).should('have.class', 'post-182');
-    cy.get('.products li').eq(1).should('have.class', 'post-181');
+    cy.verificarProdutos(0, 'post-182');
+    cy.verificarProdutos(1, 'post-181');
   })
 
-  it('deve clicar em Sort by price: low to high para organizar em ordem crescente por preço', () => {
-
-    // clicar no select e escolher Sort by popularity
-    cy.get('select.orderby').select('price');
-
+  it('ordenar por preço em ordem crescente', () => {
+    cy.ordenarProdutosPor('price');
     // verificar dois primeiros itens
-    cy.get('.products li').eq(0).should('have.class', 'post-180');
-    cy.get('.products li').eq(1).should('have.class', 'post-182');
+    cy.verificarProdutos(0, 'post-180');
+    cy.verificarProdutos(1, 'post-182');
   })
 
-  it('deve clicar em Sort by price: high to low para organizar em ordem descrescente por preço', () => {
-
-    // clicar no select e escolher Sort by popularity
-    cy.get('select.orderby').select('price-desc');
-
+  it('ordenar por preço em ordem decrescente', () => {
+    cy.ordenarProdutosPor('price-desc');
     // verificar dois primeiros itens
-    cy.get('.products li').eq(0).should('have.class', 'post-160');
-    cy.get('.products li').eq(1).should('have.class', 'post-169');
+    cy.verificarProdutos(0, 'post-160');
+    cy.verificarProdutos(1, 'post-169');
   })
 
-  it('deve clicar em read more para exibir produto fora de estoque', () => {
-
+  // TESTE COM ERRO
+  it('botão de ler mais que indica produto fora de estoque', () => {
     // tentativa de procurar botão read more e clicar
-    cy.contains('button', 'read more').click();
+    cy.clicar(cy.contains('button', 'read more'));
     // verificar se produto está fora de estoque
-    cy.contains('Out Of Stock').should('be.visible');
+    cy.estaVisivel('Out Of Stock');
     cy.get('button[type="submit"]').should('be.disabled');
     // (ERRO) não existe produto fora de estoque
   })
 
-  it('deve clicar em produto com marca SALE! para exibir desconto', () => {
+  it('exibir desconto em produto', () => {
     // exemplo de elemento com SALE!
-    cy.get('.post-169').find('.onsale').should('exist');
-    cy.get('.post-169').click();
+    cy.deveExistirElemento('.post-169', '.onsale');
+    cy.clicar('.post-169');
     // verificando se possui preço antigo e preço novo
-    cy.get('.woocommerce-Price-amount').should('have.length', 2);
+    cy.deveTerTamanho('.woocommerce-Price-amount', 2);
   })
 
-  it('deve adicionar um produto ao carrinho e finalizar compra para efetuar compra', () => {
+  it('efetuar compra corretamente', () => {
+    // acessar carrinho após adicionar elemento exemplo
+    cy.clicar('.post-169 .add_to_cart_button');
+    cy.clicar('.post-169 .added_to_cart');
+
+    cy.estaVisivel('.cart_totals'); // verificar visibilidade da tabela
+
+    cy.clicar('.checkout-button');
+
+    // verificar componentes na página de checkout
+    cy.estaVisivel('.woocommerce-billing-fields');
+    cy.estaVisivel('.woocommerce-shipping-fields');
+    cy.estaVisivel('.wc_payment_methods');
+
+    cy.verificarSubtotalMenor();    // verificar se o subtotal é menor do que o preço total
+
+    cy.preencherDetalhesFaturamento({
+      nome: 'Nome',
+      sobrenome: 'Sobrenome',
+      email: 'meuemailvalido@dominio.com',
+      telefone: '(11)99999-9999',
+      pais: 'Brazil',
+      endereco1: 'Meu Endereco',
+      endereco2: 'São Paulo',
+      cidade: 'São Paulo',
+      estado: 'São Paulo',
+      cep: '99999999'
+    });
+
+    cy.clicar('#payment_method_cod'); // exemplo de alteração de método de pagamento
+    cy.clicar('#place_order');        // prosseguir com compra
+
+    // verificar nova URL
+    cy.verificarURL('/checkout/order-received/');
+  })
+
+  it('visualizar informações de carrinho e acessar carrinho pelo menu', () => {
+    cy.clicar('.post-169 .add_to_cart_button'); // adicionar elemento exemplo ao carrinho
+    cy.clicar('#menu-icon');
+    cy.deveConter('.cartcontents', '1 item');   // verificar se é possível consultar a quantidade de itens pelo menu
+    cy.estaVisivel('.amount');                  // verificar se o preço está visível
+    cy.clicar('.wpmenucartli');
+    cy.verificarURL('/basket/');                // cesta de compras
+  })
+
+  it('verificar tipos de taxa: indiana (2%) e restantes (5%)', () => {
     // adicionar elemento exemplo ao carrinho
-    cy.get('.post-169 .add_to_cart_button').click();
+    cy.clicar('.post-169 .add_to_cart_button');
     // acessar carrinho via botão View Basket
-    cy.get('.post-169 .added_to_cart').click();
-    
-    cy.get('table.shop_table').contains('th', 'Total').should('exist');
-    cy.get('table.shop_table').contains('th', 'Subtotal').should('exist');
-    cy.get('.cart-subtotal').find('.woocommerce-Price-amount').should('exist');
-    cy.get('.order-total').find('.woocommerce-Price-amount').should('exist');
+    cy.clicar('.post-169 .added_to_cart');
+
+    cy.clicar('.checkout-button');
+
+    // verificar se existem os valores para subtotal, taxa e total
+    cy.deveExistirElemento('.cart-subtotal', '.woocommerce-Price-amount');
+    cy.deveExistirElemento('.order-total', '.woocommerce-Price-amount');
+    cy.deveExistirElemento('.tax-rate', '.woocommerce-Price-amount');
+
+    // verificar se o subtotal é menor do que o preço total
+    cy.verificarSubtotalMenor();
+    // verificar taxa indiana (padrão)
+    cy.verificarTaxa(0.02);
+    // alterar dados de envio para Brazil, São Paulo
+    cy.alterarDadosDeEnvio('Brazil', 'São Paulo');
+    // a taxa agora deve ser 5% do subtotal
+    cy.verificarTaxa(0.05);
   })
 })
 // ===============================================
