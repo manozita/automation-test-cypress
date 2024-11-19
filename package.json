@@ -1,0 +1,17 @@
+{
+  "name": "automacao_solutis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run && npx mochawesome-merge cypress/results/mochawesome_*.json > cypress/combined-report.json && npx mochawesome-report-generator cypress/combined-report.json -o cypress/mochawesome-report && rmdir /s /q cypress\\results"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.4",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}

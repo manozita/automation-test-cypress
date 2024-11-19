@@ -1,0 +1,26 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar logs de execução
+cypress/logs/
+
+# Ignorar arquivos de ambiente ou configurações locais
+.env
+.env.local
+.env.*.local
+
+# Ignorar configurações específicas do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de lock e configuração locais
+package-lock.json
+yarn.lock
+
+# Ignorar diretórios de builds ou artefatos de compilação
+dist/
+build/
+
+# Ignorar arquivos de configuração do Cypress gerados automaticamente
+cypress.json
+cypress.env.json

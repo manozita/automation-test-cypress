@@ -6,7 +6,7 @@ describe('página de login', () => {
   })
 
   it('login com campos Username e Password corretos', () => {
-    cy.login('manoelamartedi@hotmail.com', '12senha34');
+    cy.login('meuemailvalido@dominio.com', '12senha34');
     cy.verificarURL('/my-account/'); // verificar se está na página de conta
   })
 
