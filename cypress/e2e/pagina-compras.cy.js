@@ -66,7 +66,7 @@ describe('página de compras', () => {
 
   it('exibir desconto em produto', () => {
     // exemplo de elemento com SALE!
-    cy.deveExistirElemento('.post-169', '.onsale');
+    cy.estaVisivel('.onsale');
     cy.clicar('.post-169');
     // verificando se possui preço antigo e preço novo
     cy.deveTerTamanho('.woocommerce-Price-amount', 2);
@@ -95,7 +95,7 @@ describe('página de compras', () => {
       telefone: '(11)99999-9999',
       pais: 'Brazil',
       endereco1: 'Meu Endereco',
-      endereco2: 'São Paulo',
+      endereco2: 'em São Paulo',
       cidade: 'São Paulo',
       estado: 'São Paulo',
       cep: '99999999'
@@ -126,9 +126,9 @@ describe('página de compras', () => {
     cy.clicar('.checkout-button');
 
     // verificar se existem os valores para subtotal, taxa e total
-    cy.deveExistirElemento('.cart-subtotal', '.woocommerce-Price-amount');
-    cy.deveExistirElemento('.order-total', '.woocommerce-Price-amount');
-    cy.deveExistirElemento('.tax-rate', '.woocommerce-Price-amount');
+    cy.estaVisivel('.woocommerce-Price-amount');
+    cy.estaVisivel('.order-total', '.woocommerce-Price-amount');
+    cy.estaVisivel('.tax-rate', '.woocommerce-Price-amount');
 
     // verificar se o subtotal é menor do que o preço total
     cy.verificarSubtotalMenor();

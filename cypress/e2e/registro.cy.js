@@ -6,7 +6,7 @@ describe('página de registro', () => {
   })
 
   it('registro com campos Email address e Password válidos', () => {
-    cy.registro('meuemailvalido@solutis.com', '12senha34');
+    cy.registro('meuemailvalido10@solutis.com', '12senha34');
     cy.verificarURL('/my-account/'); // verificar se está na página de conta
   })
  
@@ -21,7 +21,7 @@ describe('página de registro', () => {
   })
 
   it('registro com Password vazio e Email address válido', () => {
-    cy.registro('meuemailvalido@dominio.com', '');
+    cy.registro('meuemailvalido@solutis.com', '');
     cy.verificarTextoErro('Please enter an account password.');
   })
 
