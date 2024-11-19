@@ -1,6 +1,6 @@
 // -- comando de navegação para página de login/registro --
 Cypress.Commands.add('acessarItemMenu', (item) => {
-    cy.visit('https://practice.automationtesting.in/')
+    cy.visit('https://practice.automationtesting.in/');
     cy.get('#menu-icon').click();
     cy.get(`#menu-item-${item}`).click();
 });
@@ -40,6 +40,16 @@ Cypress.Commands.add('deveTerTamanho', (item, tamanho) => {
     cy.get(item).should('have.length', tamanho);
 });
 
+// -- comando de verificação de texto de erro --
+Cypress.Commands.add('verificarTextoErro', (textoErro) => {
+    cy.get('.woocommerce-error').should('be.visible').and('contain.text', textoErro);
+});
+
+// -- comando de verificação de URL --
+Cypress.Commands.add('verificarURL', (conteudo) => {
+    cy.url().should('include', conteudo);
+});
+
 // -- comando de login --
 Cypress.Commands.add('login', (email, senha) => {
     if (email)
@@ -56,16 +66,6 @@ Cypress.Commands.add('registro', (email, senha) => {
     if (senha)
         cy.get('#reg_password').type(senha);
     cy.get('input[name="register"]').click();
-});
-
-// -- comando de verificação de URL --
-Cypress.Commands.add('verificarURL', (conteudo) => {
-    cy.url().should('include', conteudo);
-});
-
-// -- comando de verificação de texto de erro --
-Cypress.Commands.add('verificarTextoErro', (textoErro) => {
-    cy.get('.woocommerce-error').should('be.visible').and('contain.text', textoErro);
 });
 
 // -- comando para arrastar slider de filtro da página de compras --

@@ -52,7 +52,6 @@ Para executar todos os testes em modo headless (sem interface), ideal para integ
 npx cypress run
 ```
 
-
 ## Estrutura do Projeto
 
 A estrutura do projeto está organizada da seguinte forma:
@@ -63,10 +62,6 @@ A FAZER (IMAGEM DO GUI)
 ## Funcionalidades Testadas
 Este projeto cobre uma variedade de funcionalidades disponíveis no site Automation Testing:
 
-EXEMPLO
-
-- Autenticação e Login: Validação de fluxos de login, autenticação de usuários e controle de acesso.
-- Formulários: Testes detalhados para entrada de dados em diferentes tipos de formulários.
-- Sliders: Manipulação e validação de sliders com controle de valores.
-- Filtros e Pesquisa: Verificação do comportamento correto de filtros e funções de pesquisa.
-- Carrinho de Compras e Checkout: Validação do fluxo de compras, gerenciamento do carrinho e finalização de compras.
+- Registro e Login de Usuário: Validação de fluxos de login, controle de acesso.
+- Configurações de conta: Testes detalhados para entrada de dados em diferentes tipos de formulários.
+- Página de compras: Verificação do comportamento correto de filtros e funções de pesquisa, validação do fluxo de compras, gerenciamento do carrinho e finalização de compras.
