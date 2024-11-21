@@ -1,0 +1,220 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-11-21T21:38:22.997Z",
+    "end": "2024-11-21T21:39:24.050Z",
+    "duration": 61053,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ba3d4565-a264-43c8-9306-17ab46636442",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.js",
+      "file": "cypress\\e2e\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+          "title": "página de login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "login com campos Username e Password corretos",
+              "fullTitle": "página de login login com campos Username e Password corretos",
+              "timedOut": null,
+              "duration": 14197,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('meuemailvalido@dominio.com', '12senha34');\ncy.verificarURL('/my-account/'); // verificar se está na página de conta",
+              "err": {},
+              "uuid": "5bbea7c6-8a26-4e04-9224-93ea3d4d26bd",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com campos Username e Password incorretos",
+              "fullTitle": "página de login login com campos Username e Password incorretos",
+              "timedOut": null,
+              "duration": 7910,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('meuUsernameInvalido', 'senhaIncorreta');\ncy.verificarTextoErro('is not registered on this site. If you are unsure of your username, try your email address instead.');",
+              "err": {},
+              "uuid": "22671fba-b4b3-41ca-8bbd-72e9d0337415",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com campo Username correto e campo Password vazio",
+              "fullTitle": "página de login login com campo Username correto e campo Password vazio",
+              "timedOut": null,
+              "duration": 8125,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('meuemailvalido@dominio.com', '');\ncy.verificarTextoErro('Password is required.');",
+              "err": {},
+              "uuid": "8966332a-19bd-4141-815a-5fe5366326ac",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com campo Username vazio e campo Password correto",
+              "fullTitle": "página de login login com campo Username vazio e campo Password correto",
+              "timedOut": null,
+              "duration": 9542,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('', '12senha34');\ncy.verificarTextoErro('Username is required.');",
+              "err": {},
+              "uuid": "beb9457a-e680-419b-8d3b-f21b604013f2",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com campos Username e Password vazios",
+              "fullTitle": "página de login login com campos Username e Password vazios",
+              "timedOut": null,
+              "duration": 7668,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('', '');\ncy.verificarTextoErro('Username is required.');",
+              "err": {},
+              "uuid": "ec0dd9f9-f0d7-4293-b85a-2297dc8326d5",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com informações de Password escondidas",
+              "fullTitle": "página de login login com informações de Password escondidas",
+              "timedOut": null,
+              "duration": 3954,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#password').type('12senha34');\ncy.get('#password').should('have.attr', 'type', 'password');\n// se o tipo é password, a senha está escondida",
+              "err": {},
+              "uuid": "51bad31f-3e92-4815-91ae-d109da2e7ea3",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login com campos Username e Password sensíveis a maiúsculas",
+              "fullTitle": "página de login login com campos Username e Password sensíveis a maiúsculas",
+              "timedOut": null,
+              "duration": 5483,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('ManoelaMartedi@hotmail.com', '12Senha34');\ncy.verificarTextoErro('The password you entered for the username');",
+              "err": {},
+              "uuid": "a3f226be-5b48-43a7-b258-d5fd0fe8e815",
+              "parentUUID": "98b04c31-4d5e-41ce-9063-a9dcd39dca1a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5bbea7c6-8a26-4e04-9224-93ea3d4d26bd",
+            "22671fba-b4b3-41ca-8bbd-72e9d0337415",
+            "8966332a-19bd-4141-815a-5fe5366326ac",
+            "beb9457a-e680-419b-8d3b-f21b604013f2",
+            "ec0dd9f9-f0d7-4293-b85a-2297dc8326d5",
+            "51bad31f-3e92-4815-91ae-d109da2e7ea3",
+            "a3f226be-5b48-43a7-b258-d5fd0fe8e815"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 56879,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

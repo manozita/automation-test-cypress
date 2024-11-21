@@ -65,9 +65,10 @@ Cypress.Commands.add('login', (email, senha) => {
 // -- comando de registro --
 Cypress.Commands.add('registro', (email, senha) => {
     if (email)
-        cy.get('#reg_email').type(email);
+        cy.get('#reg_email').type(email, { force: true });
+    cy.wait(2000);
     if (senha)
-        cy.get('#reg_password').type(senha);
+        cy.get('#reg_password').type(senha, { force: true });
     cy.get('input[name="register"]').click();
 });
 
