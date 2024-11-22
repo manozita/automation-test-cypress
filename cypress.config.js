@@ -10,8 +10,8 @@ module.exports = {
     reporterOptions: {
       reportDir: 'cypress/results',
       overwrite: false,
-      html: false,
-      json: true,
+      html: true,
+      json: false,
       timestamp: 'mmddyyyy_HHMMss'
     }
   },
