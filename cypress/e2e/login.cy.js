@@ -37,7 +37,7 @@ describe('página de login', () => {
   });
 
   it('login com campos Username e Password sensíveis a maiúsculas', () => {
-    cy.login('ManoelaMartedi@hotmail.com', '12Senha34');
+    cy.login('MEUemailVALIDO@hotmail.com', '12Senha34');
     cy.verificarTextoErro('The password you entered for the username');
   });
 
