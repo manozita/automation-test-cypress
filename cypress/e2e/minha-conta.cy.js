@@ -3,7 +3,7 @@ describe('página de minha conta', () => {
 
   beforeEach(() => {
     cy.acessarItemMenu('50');
-    cy.login('meuemailvalido@dominio.com', '12senha34');
+    cy.login('minhaconta@dominio.com', '12senha34');
   })
 
   it('exibir Dashboard após login', () => {
